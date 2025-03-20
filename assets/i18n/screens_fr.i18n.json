@@ -1,0 +1,7 @@
+{
+    "my_watches": {
+        "title": "Mes montres",
+        "button_add_watch": "Ajouter montre",
+        "info_no_watch_linked": "Aucune montre n'est encore liée"
+    }
+}
