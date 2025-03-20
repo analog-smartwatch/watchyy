@@ -1,5 +1,5 @@
-# Watchyy app
+# Launch Screen Assets
 
-Run `make run` for starting the app. Check make file for more commands.
+You can customize the launch screen with your own desired assets by replacing the image files in this directory.
 
-Design file can be found [here](https://www.figma.com/community/file/1428054838312216377/open-hybrid-smartwatch-app).
+You can also do it by opening your Flutter project's Xcode project with `open ios/Runner.xcworkspace`, selecting `Runner/Assets.xcassets` in the Project Navigator and dropping in the desired images.
