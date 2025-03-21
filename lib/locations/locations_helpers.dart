@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:watchyy/i18n/i18n.dart';
 
+const scanningPath = '/scanning';
+
+// Tabs
 const homePath = '/home';
 const settingsPath = '/settings';
 

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 18 (9 per locale)
+/// Strings: 30 (15 per locale)
 ///
-/// Built on 2025-03-21 at 10:08 UTC
+/// Built on 2025-03-21 at 11:10 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -160,6 +160,7 @@ class _StringsGeneralEn {
 
 	// Translations
 	late final _StringsGeneralBottomNavigationEn bottom_navigation = _StringsGeneralBottomNavigationEn._(_root);
+	String get try_again => 'Try again';
 }
 
 // Path: screens
@@ -172,6 +173,7 @@ class _StringsScreensEn {
 	late final _StringsScreensMyWatchesEn my_watches = _StringsScreensMyWatchesEn._(_root);
 	late final _StringsScreensHomeEn home = _StringsScreensHomeEn._(_root);
 	late final _StringsScreensSettingsEn settings = _StringsScreensSettingsEn._(_root);
+	late final _StringsScreensScanningEn scanning = _StringsScreensScanningEn._(_root);
 }
 
 // Path: general.bottom_navigation
@@ -219,6 +221,20 @@ class _StringsScreensSettingsEn {
 	String get firmware_version => 'Firmware version';
 }
 
+// Path: screens.scanning
+class _StringsScreensScanningEn {
+	_StringsScreensScanningEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Scanning';
+	String get nothing_found_yet => 'Nothing found yet';
+	String get stop_scan => 'Stop scan';
+	String get cannot_find_anything => 'Couldn’t find anything';
+	String get around_me => 'Around me';
+}
+
 // Path: <root>
 class _StringsFr implements Translations {
 	/// You can call this constructor and build your own translation instance of this locale.
@@ -255,6 +271,7 @@ class _StringsGeneralFr implements _StringsGeneralEn {
 
 	// Translations
 	@override late final _StringsGeneralBottomNavigationFr bottom_navigation = _StringsGeneralBottomNavigationFr._(_root);
+	@override String get try_again => 'Réessayer';
 }
 
 // Path: screens
@@ -267,6 +284,7 @@ class _StringsScreensFr implements _StringsScreensEn {
 	@override late final _StringsScreensMyWatchesFr my_watches = _StringsScreensMyWatchesFr._(_root);
 	@override late final _StringsScreensHomeFr home = _StringsScreensHomeFr._(_root);
 	@override late final _StringsScreensSettingsFr settings = _StringsScreensSettingsFr._(_root);
+	@override late final _StringsScreensScanningFr scanning = _StringsScreensScanningFr._(_root);
 }
 
 // Path: general.bottom_navigation
@@ -314,6 +332,20 @@ class _StringsScreensSettingsFr implements _StringsScreensSettingsEn {
 	@override String get firmware_version => 'Version logiciel';
 }
 
+// Path: screens.scanning
+class _StringsScreensScanningFr implements _StringsScreensScanningEn {
+	_StringsScreensScanningFr._(this._root);
+
+	@override final _StringsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Scan en cours';
+	@override String get nothing_found_yet => 'Rien n\'a encore été trouvé';
+	@override String get stop_scan => 'Arrêter le scan';
+	@override String get cannot_find_anything => 'Rien n\'a été trouvé';
+	@override String get around_me => 'Autour de moi';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
@@ -322,6 +354,7 @@ extension on Translations {
 		switch (path) {
 			case 'general.bottom_navigation.home': return 'Home';
 			case 'general.bottom_navigation.settings': return 'Settings';
+			case 'general.try_again': return 'Try again';
 			case 'screens.my_watches.title': return 'My Watches';
 			case 'screens.my_watches.button_add_watch': return 'Add watch';
 			case 'screens.my_watches.info_no_watch_linked': return 'No watch linked yet';
@@ -329,6 +362,11 @@ extension on Translations {
 			case 'screens.settings.title': return 'Settings';
 			case 'screens.settings.info': return 'Info';
 			case 'screens.settings.firmware_version': return 'Firmware version';
+			case 'screens.scanning.title': return 'Scanning';
+			case 'screens.scanning.nothing_found_yet': return 'Nothing found yet';
+			case 'screens.scanning.stop_scan': return 'Stop scan';
+			case 'screens.scanning.cannot_find_anything': return 'Couldn’t find anything';
+			case 'screens.scanning.around_me': return 'Around me';
 			default: return null;
 		}
 	}
@@ -339,6 +377,7 @@ extension on _StringsFr {
 		switch (path) {
 			case 'general.bottom_navigation.home': return 'Accueil';
 			case 'general.bottom_navigation.settings': return 'Paramètres';
+			case 'general.try_again': return 'Réessayer';
 			case 'screens.my_watches.title': return 'Mes montres';
 			case 'screens.my_watches.button_add_watch': return 'Ajouter montre';
 			case 'screens.my_watches.info_no_watch_linked': return 'Aucune montre n\'est encore liée';
@@ -346,6 +385,11 @@ extension on _StringsFr {
 			case 'screens.settings.title': return 'Paramètres';
 			case 'screens.settings.info': return 'Info';
 			case 'screens.settings.firmware_version': return 'Version logiciel';
+			case 'screens.scanning.title': return 'Scan en cours';
+			case 'screens.scanning.nothing_found_yet': return 'Rien n\'a encore été trouvé';
+			case 'screens.scanning.stop_scan': return 'Arrêter le scan';
+			case 'screens.scanning.cannot_find_anything': return 'Rien n\'a été trouvé';
+			case 'screens.scanning.around_me': return 'Autour de moi';
 			default: return null;
 		}
 	}

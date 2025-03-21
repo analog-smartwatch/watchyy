@@ -2,5 +2,6 @@
     "bottom_navigation": {
         "home": "Home",
         "settings": "Settings"
-    }
+    },
+    "try_again": "Try again"
 }
