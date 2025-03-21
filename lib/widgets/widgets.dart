@@ -6,4 +6,5 @@ export './chevron_back_button.dart';
 export './divider.dart';
 export './icon_button.dart';
 export './icons.dart';
+export './product_list_item.dart';
 export './spinner_widget.dart';

@@ -14,9 +14,11 @@
     },
     "scanning": {
         "title": "Scanning",
-        "nothing_found_yet": "Nothing found yet",
+        "nothing_found": "Nothing found",
         "stop_scan": "Stop scan",
         "cannot_find_anything": "Couldn’t find anything",
-        "around_me": "Around me"
+        "around_me": "Around me",
+        "new_scan": "New scan",
+        "found": "Found"
     }
 }

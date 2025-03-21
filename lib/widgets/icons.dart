@@ -182,4 +182,12 @@ class WAIcons {
   static final IconData watch = switch (WAIcons().currentOS()) {
     _ => IonIcons.watch,
   };
+
+  static final IconData bluetooth = switch (WAIcons().currentOS()) {
+    _ => IonIcons.bluetooth,
+  };
+
+  static final IconData closeCircle = switch (WAIcons().currentOS()) {
+    _ => Bootstrap.x_circle,
+  };
 }

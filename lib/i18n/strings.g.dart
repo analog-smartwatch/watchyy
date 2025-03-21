@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 30 (15 per locale)
+/// Strings: 34 (17 per locale)
 ///
-/// Built on 2025-03-21 at 11:10 UTC
+/// Built on 2025-03-21 at 21:46 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -229,10 +229,12 @@ class _StringsScreensScanningEn {
 
 	// Translations
 	String get title => 'Scanning';
-	String get nothing_found_yet => 'Nothing found yet';
+	String get nothing_found => 'Nothing found';
 	String get stop_scan => 'Stop scan';
 	String get cannot_find_anything => 'Couldn’t find anything';
 	String get around_me => 'Around me';
+	String get new_scan => 'New scan';
+	String get found => 'Found';
 }
 
 // Path: <root>
@@ -340,10 +342,12 @@ class _StringsScreensScanningFr implements _StringsScreensScanningEn {
 
 	// Translations
 	@override String get title => 'Scan en cours';
-	@override String get nothing_found_yet => 'Rien n\'a encore été trouvé';
+	@override String get nothing_found => 'Rien trouvé';
 	@override String get stop_scan => 'Arrêter le scan';
 	@override String get cannot_find_anything => 'Rien n\'a été trouvé';
 	@override String get around_me => 'Autour de moi';
+	@override String get new_scan => 'Nouveau scan';
+	@override String get found => 'Trouvé';
 }
 
 /// Flat map(s) containing all translations.
@@ -363,10 +367,12 @@ extension on Translations {
 			case 'screens.settings.info': return 'Info';
 			case 'screens.settings.firmware_version': return 'Firmware version';
 			case 'screens.scanning.title': return 'Scanning';
-			case 'screens.scanning.nothing_found_yet': return 'Nothing found yet';
+			case 'screens.scanning.nothing_found': return 'Nothing found';
 			case 'screens.scanning.stop_scan': return 'Stop scan';
 			case 'screens.scanning.cannot_find_anything': return 'Couldn’t find anything';
 			case 'screens.scanning.around_me': return 'Around me';
+			case 'screens.scanning.new_scan': return 'New scan';
+			case 'screens.scanning.found': return 'Found';
 			default: return null;
 		}
 	}
@@ -386,10 +392,12 @@ extension on _StringsFr {
 			case 'screens.settings.info': return 'Info';
 			case 'screens.settings.firmware_version': return 'Version logiciel';
 			case 'screens.scanning.title': return 'Scan en cours';
-			case 'screens.scanning.nothing_found_yet': return 'Rien n\'a encore été trouvé';
+			case 'screens.scanning.nothing_found': return 'Rien trouvé';
 			case 'screens.scanning.stop_scan': return 'Arrêter le scan';
 			case 'screens.scanning.cannot_find_anything': return 'Rien n\'a été trouvé';
 			case 'screens.scanning.around_me': return 'Autour de moi';
+			case 'screens.scanning.new_scan': return 'Nouveau scan';
+			case 'screens.scanning.found': return 'Trouvé';
 			default: return null;
 		}
 	}
