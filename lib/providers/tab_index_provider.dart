@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:riverpod/riverpod.dart';
 
-const initialIndex = kDebugMode ? 0 : 0;
+const _initialIndex = kDebugMode ? 0 : 0;
 
 class TabIndex {
   TabIndex({required this.index});
@@ -10,7 +10,7 @@ class TabIndex {
 }
 
 class TabIndexNotifier extends StateNotifier<TabIndex> {
-  TabIndexNotifier() : super(TabIndex(index: initialIndex));
+  TabIndexNotifier() : super(TabIndex(index: _initialIndex));
 
   void updateTabIndex(int index) {
     state = TabIndex(index: index);

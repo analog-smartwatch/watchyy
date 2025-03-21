@@ -14,6 +14,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_reactive_ble: ^5.4.0
   go_router: ^14.1.3
   hooks_riverpod: ^2.5.1
   http: ^1.2.2
@@ -33,7 +34,7 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
-  leancode_lint: ^15.1.0
+  leancode_lint: ^12.0.0
 
 flutter:
   uses-material-design: true

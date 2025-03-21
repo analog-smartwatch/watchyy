@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:watchyy/i18n/i18n.dart';
 import 'package:watchyy/locations/locations.dart';
+import 'package:watchyy/providers/providers.dart';
 import 'package:watchyy/singletons/singletons.dart';
 import 'package:watchyy/styles/styles.dart';
 
@@ -52,6 +53,13 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final product = ref.watch(productConnectionNotifier);
+    var routerConfig = getNotConnectedRouter(context);
+
+    if (product != null) {
+      routerConfig = getRouter();
+    }
+
     return MediaQuery.withClampedTextScaling(
       minScaleFactor: 0.7,
       maxScaleFactor: 2,
@@ -59,8 +67,7 @@ class App extends ConsumerWidget {
         locale: TranslationProvider.of(context).flutterLocale,
         supportedLocales: AppLocaleUtils.supportedLocales,
         localizationsDelegates: GlobalMaterialLocalizations.delegates,
-        // routerConfig: getNotConnectedRouter(context),
-        routerConfig: getRouter(),
+        routerConfig: routerConfig,
         debugShowCheckedModeBanner: false,
         theme: lightThemeData,
         darkTheme: darkThemeData,

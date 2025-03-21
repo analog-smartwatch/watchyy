@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchyy/i18n/i18n.dart';
+import 'package:watchyy/providers/providers.dart';
 import 'package:watchyy/styles/styles.dart';
 import 'package:watchyy/widgets/widgets.dart';
 
 const _firmwareVersion = 0.18;
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   Widget _buildContent({
     required BuildContext context,
     required EdgeInsetsGeometry padding,
+    required WidgetRef ref,
   }) {
     final translations = context.t.screens.settings;
 
@@ -36,12 +39,18 @@ class SettingsScreen extends StatelessWidget {
                 translations.firmware_version,
                 style: AppTheme.of(context).appTypography.bodyMedium,
               ),
-              // Spacer(),
               Text(
                 _firmwareVersion.toString(),
                 style: AppTheme.of(context).appTypography.bodyMedium,
               ),
             ],
+          ),
+          WASpacings.xxl.verticalSpace,
+          WAButton(
+            onPressed: () =>
+                ref.read(productConnectionNotifier.notifier).disconnect(),
+            text: 'Disconnect',
+            type: WAButtonType.primary,
           ),
         ],
       ),
@@ -49,7 +58,7 @@ class SettingsScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return WAScaffold(
       title: context.t.screens.settings.title,
       largeIosTitle: true,
@@ -58,11 +67,15 @@ class SettingsScreen extends StatelessWidget {
           child: _buildContent(
             context: context,
             padding: padding,
+            ref: ref,
           ),
         ),
       ],
-      bodyBuilder: (context, padding) =>
-          _buildContent(context: context, padding: padding),
+      bodyBuilder: (context, padding) => _buildContent(
+        context: context,
+        padding: padding,
+        ref: ref,
+      ),
     );
   }
 }
