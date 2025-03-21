@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchyy/i18n/i18n.dart';
+import 'package:watchyy/providers/providers.dart';
 import 'package:watchyy/styles/styles.dart';
 import 'package:watchyy/widgets/widgets.dart';
 
-const _smartchWatchName = "Paul's smartwatch";
 const _batteryLevel = 87;
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   Widget _buildContent({
@@ -28,9 +29,12 @@ class HomeScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final product = ref.watch(productConnectionNotifier) ??
+        Product(bluetoothId: 'bluetoothId', name: 'name');
+
     return WAScaffold(
-      title: _smartchWatchName,
+      title: product.name,
       largeIosTitle: true,
       slivers: (context, padding) => [
         SliverToBoxAdapter(

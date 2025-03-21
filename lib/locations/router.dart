@@ -10,7 +10,7 @@ GoRouter getNotConnectedRouter() {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const ScanningScreen(),
+        builder: (context, state) => const MyWatchesScreen(),
         routes: [
           GoRoute(
             path: scanningPath,

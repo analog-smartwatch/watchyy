@@ -7,10 +7,12 @@ class ProductListItem extends StatelessWidget {
     super.key,
     required this.name,
     required this.onPressed,
+    this.watchIcon = false,
   });
 
   final String name;
   final VoidCallback onPressed;
+  final bool watchIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +30,26 @@ class ProductListItem extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                name,
-                style: AppTheme.of(context).appTypography.bodyLarge,
-              ),
+              if (watchIcon) ...[
+                Row(
+                  children: [
+                    Icon(
+                      WAIcons.watch,
+                      color: colorScheme.primary,
+                    ),
+                    WASpacings.xs.horizontalSpace,
+                    Text(
+                      name,
+                      style: AppTheme.of(context).appTypography.bodyLarge,
+                    ),
+                  ],
+                ),
+              ] else ...[
+                Text(
+                  name,
+                  style: AppTheme.of(context).appTypography.bodyLarge,
+                ),
+              ],
               Icon(
                 WAIcons.chevronRight,
                 color: colorScheme.primary,
