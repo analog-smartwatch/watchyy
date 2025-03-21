@@ -3,8 +3,8 @@ import 'package:watchyy/i18n/i18n.dart';
 import 'package:watchyy/styles/styles.dart';
 import 'package:watchyy/widgets/widgets.dart';
 
-class MyWatches extends StatelessWidget {
-  const MyWatches({super.key});
+class MyWatchesScreen extends StatelessWidget {
+  const MyWatchesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -3,5 +3,13 @@
         "title": "Mes montres",
         "button_add_watch": "Ajouter montre",
         "info_no_watch_linked": "Aucune montre n'est encore liée"
+    },
+    "home": {
+        "battery_level": "Batterie $level%"
+    },
+    "settings": {
+        "title": "Paramètres",
+        "info": "Info",
+        "firmware_version": "Version logiciel"
     }
 }

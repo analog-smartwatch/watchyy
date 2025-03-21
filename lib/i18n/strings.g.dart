@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 10 (5 per locale)
+/// Strings: 18 (9 per locale)
 ///
-/// Built on 2025-03-20 at 20:25 UTC
+/// Built on 2025-03-21 at 10:08 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -170,6 +170,8 @@ class _StringsScreensEn {
 
 	// Translations
 	late final _StringsScreensMyWatchesEn my_watches = _StringsScreensMyWatchesEn._(_root);
+	late final _StringsScreensHomeEn home = _StringsScreensHomeEn._(_root);
+	late final _StringsScreensSettingsEn settings = _StringsScreensSettingsEn._(_root);
 }
 
 // Path: general.bottom_navigation
@@ -179,8 +181,8 @@ class _StringsGeneralBottomNavigationEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get home => 'Accueil';
-	String get settings => 'Paramètres';
+	String get home => 'Home';
+	String get settings => 'Settings';
 }
 
 // Path: screens.my_watches
@@ -193,6 +195,28 @@ class _StringsScreensMyWatchesEn {
 	String get title => 'My Watches';
 	String get button_add_watch => 'Add watch';
 	String get info_no_watch_linked => 'No watch linked yet';
+}
+
+// Path: screens.home
+class _StringsScreensHomeEn {
+	_StringsScreensHomeEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String battery_level({required Object level}) => 'Battery ${level}%';
+}
+
+// Path: screens.settings
+class _StringsScreensSettingsEn {
+	_StringsScreensSettingsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Settings';
+	String get info => 'Info';
+	String get firmware_version => 'Firmware version';
 }
 
 // Path: <root>
@@ -241,6 +265,8 @@ class _StringsScreensFr implements _StringsScreensEn {
 
 	// Translations
 	@override late final _StringsScreensMyWatchesFr my_watches = _StringsScreensMyWatchesFr._(_root);
+	@override late final _StringsScreensHomeFr home = _StringsScreensHomeFr._(_root);
+	@override late final _StringsScreensSettingsFr settings = _StringsScreensSettingsFr._(_root);
 }
 
 // Path: general.bottom_navigation
@@ -250,8 +276,8 @@ class _StringsGeneralBottomNavigationFr implements _StringsGeneralBottomNavigati
 	@override final _StringsFr _root; // ignore: unused_field
 
 	// Translations
-	@override String get home => 'Home';
-	@override String get settings => 'Settings';
+	@override String get home => 'Accueil';
+	@override String get settings => 'Paramètres';
 }
 
 // Path: screens.my_watches
@@ -266,17 +292,43 @@ class _StringsScreensMyWatchesFr implements _StringsScreensMyWatchesEn {
 	@override String get info_no_watch_linked => 'Aucune montre n\'est encore liée';
 }
 
+// Path: screens.home
+class _StringsScreensHomeFr implements _StringsScreensHomeEn {
+	_StringsScreensHomeFr._(this._root);
+
+	@override final _StringsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String battery_level({required Object level}) => 'Batterie ${level}%';
+}
+
+// Path: screens.settings
+class _StringsScreensSettingsFr implements _StringsScreensSettingsEn {
+	_StringsScreensSettingsFr._(this._root);
+
+	@override final _StringsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Paramètres';
+	@override String get info => 'Info';
+	@override String get firmware_version => 'Version logiciel';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
 extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
-			case 'general.bottom_navigation.home': return 'Accueil';
-			case 'general.bottom_navigation.settings': return 'Paramètres';
+			case 'general.bottom_navigation.home': return 'Home';
+			case 'general.bottom_navigation.settings': return 'Settings';
 			case 'screens.my_watches.title': return 'My Watches';
 			case 'screens.my_watches.button_add_watch': return 'Add watch';
 			case 'screens.my_watches.info_no_watch_linked': return 'No watch linked yet';
+			case 'screens.home.battery_level': return ({required Object level}) => 'Battery ${level}%';
+			case 'screens.settings.title': return 'Settings';
+			case 'screens.settings.info': return 'Info';
+			case 'screens.settings.firmware_version': return 'Firmware version';
 			default: return null;
 		}
 	}
@@ -285,11 +337,15 @@ extension on Translations {
 extension on _StringsFr {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
-			case 'general.bottom_navigation.home': return 'Home';
-			case 'general.bottom_navigation.settings': return 'Settings';
+			case 'general.bottom_navigation.home': return 'Accueil';
+			case 'general.bottom_navigation.settings': return 'Paramètres';
 			case 'screens.my_watches.title': return 'Mes montres';
 			case 'screens.my_watches.button_add_watch': return 'Ajouter montre';
 			case 'screens.my_watches.info_no_watch_linked': return 'Aucune montre n\'est encore liée';
+			case 'screens.home.battery_level': return ({required Object level}) => 'Batterie ${level}%';
+			case 'screens.settings.title': return 'Paramètres';
+			case 'screens.settings.info': return 'Info';
+			case 'screens.settings.firmware_version': return 'Version logiciel';
 			default: return null;
 		}
 	}

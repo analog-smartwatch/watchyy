@@ -1,6 +1,6 @@
 {
     "bottom_navigation": {
-        "home": "Home",
-        "settings": "Settings"
+        "home": "Accueil",
+        "settings": "Paramètres"
     }
 }

@@ -3,5 +3,13 @@
         "title": "My Watches",
         "button_add_watch": "Add watch",
         "info_no_watch_linked": "No watch linked yet"
+    },
+    "home": {
+        "battery_level": "Battery $level%"
+    },
+    "settings": {
+        "title": "Settings",
+        "info": "Info",
+        "firmware_version": "Firmware version"
     }
 }

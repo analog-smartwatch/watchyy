@@ -22,18 +22,6 @@ class WAIcons {
     _ => Icons.home_rounded,
   };
 
-  static final IconData categories = switch (WAIcons().currentOS()) {
-    _ => Bootstrap.collection_fill,
-  };
-
-  static final IconData categoriesOutline = switch (WAIcons().currentOS()) {
-    _ => Bootstrap.collection,
-  };
-
-  static final IconData categoriesPlay = switch (WAIcons().currentOS()) {
-    _ => Bootstrap.collection_play_fill,
-  };
-
   static final IconData download = switch (WAIcons().currentOS()) {
     OperatingSystem.android => Icons.download_for_offline,
     _ => Bootstrap.cloud_arrow_down_fill,
@@ -42,10 +30,6 @@ class WAIcons {
   static final IconData search = switch (WAIcons().currentOS()) {
     OperatingSystem.android => Icons.search,
     _ => IonIcons.search,
-  };
-
-  static final IconData camera = switch (WAIcons().currentOS()) {
-    _ => IonIcons.camera,
   };
 
   static final IconData refresh = switch (WAIcons().currentOS()) {
@@ -191,11 +175,11 @@ class WAIcons {
     _ => IonIcons.close,
   };
 
-  static final IconData barcode = switch (WAIcons().currentOS()) {
-    _ => Bootstrap.upc_scan,
-  };
-
   static final IconData text = switch (WAIcons().currentOS()) {
     _ => Bootstrap.file_text,
+  };
+
+  static final IconData watch = switch (WAIcons().currentOS()) {
+    _ => IonIcons.watch,
   };
 }
