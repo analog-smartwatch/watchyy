@@ -1,5 +1,5 @@
-import 'package:watchyy/i18n/i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:watchyy/i18n/i18n.dart';
 
 class SharedPreferencesKeys {
   final locale = 'locale';

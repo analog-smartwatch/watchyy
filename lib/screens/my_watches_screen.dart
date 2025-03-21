@@ -12,10 +12,7 @@ class MyWatchesScreen extends StatelessWidget {
 
     return WAScaffold(
       title: translations.title,
-      bodyBuilder: (
-        BuildContext context,
-        EdgeInsetsDirectional padding,
-      ) {
+      bodyBuilder: (context, padding) {
         return Center(
           child: Padding(
             padding: padding + WASpacings.lg.horizontal + WASpacings.md.top,

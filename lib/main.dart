@@ -5,8 +5,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:watchyy/i18n/i18n.dart';
-import 'package:watchyy/singletons/singletons.dart';
 import 'package:watchyy/locations/locations.dart';
+import 'package:watchyy/singletons/singletons.dart';
 import 'package:watchyy/styles/styles.dart';
 
 Future<void> main() async {

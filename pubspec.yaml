@@ -33,7 +33,7 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
-  leancode_lint: ^12.1.0
+  leancode_lint: ^15.1.0
 
 flutter:
   uses-material-design: true

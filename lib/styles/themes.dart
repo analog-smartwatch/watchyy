@@ -4,11 +4,11 @@ import 'package:watchyy/styles/fonts.dart';
 import 'package:watchyy/styles/themes_mobile_utils.dart';
 
 MaterialColor _getMaterialColor(Color color) {
-  final int red = color.red;
-  final int green = color.green;
-  final int blue = color.blue;
+  final red = color.red;
+  final green = color.green;
+  final blue = color.blue;
 
-  final Map<int, Color> shades = {
+  final shades = {
     50: Color.fromRGBO(red, green, blue, .1),
     100: Color.fromRGBO(red, green, blue, .2),
     200: Color.fromRGBO(red, green, blue, .3),

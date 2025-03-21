@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:watchyy/locations/locations_helpers.dart';
 import 'package:watchyy/navigation/navigation.dart';
-import 'package:watchyy/styles/styles.dart';
 import 'package:watchyy/screens/screens.dart';
+import 'package:watchyy/styles/styles.dart';
 
 GoRouter getNotConnectedRouter(BuildContext context) {
   final theme = Theme.of(context);

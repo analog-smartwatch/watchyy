@@ -42,7 +42,7 @@ class SettingsScreen extends StatelessWidget {
                 style: AppTheme.of(context).appTypography.bodyMedium,
               ),
             ],
-          )
+          ),
         ],
       ),
     );
