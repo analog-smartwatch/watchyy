@@ -53,42 +53,46 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-    final textColor = theme.colorScheme.onSurface;
     final product = ref.watch(productConnectionNotifier);
-    var routerConfig = getNotConnectedRouter(context);
+    final routerConfig =
+        product != null ? getRouter() : getNotConnectedRouter();
 
-    if (product != null) {
-      routerConfig = getRouter();
-    }
+    return MediaQuery.withClampedTextScaling(
+      minScaleFactor: 0.7,
+      maxScaleFactor: 2,
+      child: MaterialApp.router(
+        locale: TranslationProvider.of(context).flutterLocale,
+        supportedLocales: AppLocaleUtils.supportedLocales,
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        routerConfig: routerConfig,
+        debugShowCheckedModeBanner: false,
+        theme: lightThemeData,
+        darkTheme: darkThemeData,
+        builder: (context, child) {
+          final theme = Theme.of(context);
+          final textTheme = theme.textTheme;
+          final textColor = theme.colorScheme.onSurface;
 
-    return AppTheme(
-      data: AppThemeData(
-        appTypography: AppTypography(
-          bodyLarge: textTheme.bodyLarge!.copyWith(color: textColor),
-          bodyMedium: textTheme.bodyMedium!.copyWith(color: textColor),
-          bodySmall: textTheme.bodySmall!.copyWith(color: textColor),
-          headlineLarge: textTheme.headlineLarge!.copyWith(color: textColor),
-          headlineMedium: textTheme.headlineMedium!.copyWith(color: textColor),
-          headlineSmall: textTheme.headlineSmall!.copyWith(color: textColor),
-          titleLarge: textTheme.titleLarge!.copyWith(color: textColor),
-          titleMedium: textTheme.titleMedium!.copyWith(color: textColor),
-          titleSmall: textTheme.titleSmall!.copyWith(color: textColor),
-        ),
-      ),
-      child: MediaQuery.withClampedTextScaling(
-        minScaleFactor: 0.7,
-        maxScaleFactor: 2,
-        child: MaterialApp.router(
-          locale: TranslationProvider.of(context).flutterLocale,
-          supportedLocales: AppLocaleUtils.supportedLocales,
-          localizationsDelegates: GlobalMaterialLocalizations.delegates,
-          routerConfig: routerConfig,
-          debugShowCheckedModeBanner: false,
-          theme: lightThemeData,
-          darkTheme: darkThemeData,
-        ),
+          return AppTheme(
+            data: AppThemeData(
+              appTypography: AppTypography(
+                bodyLarge: textTheme.bodyLarge!.copyWith(color: textColor),
+                bodyMedium: textTheme.bodyMedium!.copyWith(color: textColor),
+                bodySmall: textTheme.bodySmall!.copyWith(color: textColor),
+                headlineLarge:
+                    textTheme.headlineLarge!.copyWith(color: textColor),
+                headlineMedium:
+                    textTheme.headlineMedium!.copyWith(color: textColor),
+                headlineSmall:
+                    textTheme.headlineSmall!.copyWith(color: textColor),
+                titleLarge: textTheme.titleLarge!.copyWith(color: textColor),
+                titleMedium: textTheme.titleMedium!.copyWith(color: textColor),
+                titleSmall: textTheme.titleSmall!.copyWith(color: textColor),
+              ),
+            ),
+            child: child!,
+          );
+        },
       ),
     );
   }

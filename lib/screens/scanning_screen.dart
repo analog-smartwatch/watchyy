@@ -28,6 +28,8 @@ class ScanningScreen extends ConsumerWidget {
       stickyWidget: Padding(
         padding: WASpacings.lg.horizontal,
         child: WAButton(
+          text: context.t.general.try_again,
+          type: WAButtonType.secondary,
           onPressed: () {
             ref.read(productConnectionNotifier.notifier).connect(
                   Product(
@@ -36,8 +38,6 @@ class ScanningScreen extends ConsumerWidget {
                   ),
                 );
           },
-          text: context.t.general.try_again,
-          type: WAButtonType.primary,
         ),
       ),
     );

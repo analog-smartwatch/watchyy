@@ -48,7 +48,7 @@ final lightThemeData = ThemeData(
   ),
   colorScheme: ColorScheme.fromSwatch(
     primarySwatch: _primary,
-    accentColor: Colors.teal.shade400,
+    accentColor: Colors.black,
   ).copyWith(
     surface: backgroundColor,
     onSurface: Colors.black,
@@ -78,7 +78,7 @@ final darkThemeData = ThemeData(
   ),
   colorScheme: ColorScheme.fromSwatch(
     primarySwatch: _primary,
-    accentColor: Colors.teal.shade900,
+    accentColor: Colors.grey[900],
   ).copyWith(
     surface: Colors.black,
     onSurface: Colors.white,

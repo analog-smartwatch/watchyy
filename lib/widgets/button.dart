@@ -23,6 +23,7 @@ enum WAButtonType {
 
   ButtonStyle getStyle(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+
     return switch (this) {
       WAButtonType.primary => ButtonStyle(
           backgroundColor: WidgetStateProperty.all(colorScheme.primary),

@@ -5,7 +5,7 @@ import 'package:watchyy/locations/locations_helpers.dart';
 import 'package:watchyy/navigation/navigation.dart';
 import 'package:watchyy/screens/screens.dart';
 
-GoRouter getNotConnectedRouter(BuildContext context) {
+GoRouter getNotConnectedRouter() {
   return GoRouter(
     routes: [
       GoRoute(
