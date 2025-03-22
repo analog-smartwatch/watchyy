@@ -78,7 +78,7 @@ class _ScanningScreenState extends ConsumerState<_ScanningScreen> {
       children: [
         Icon(
           WAIcons.bluetooth,
-          color: Theme.of(context).colorScheme.primary,
+          color: Colors.blue,
         ),
         WASpacings.sm.horizontalSpace,
         Text(

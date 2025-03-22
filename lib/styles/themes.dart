@@ -24,7 +24,8 @@ MaterialColor _getMaterialColor(Color color) {
   return MaterialColor(color.value, shades);
 }
 
-final _primary = _getMaterialColor(const Color(0xFF2F80ED)); //#2F80ED
+const _primaryColor = Color(0xFF2F80ED); //#2F80ED
+final _primary = _getMaterialColor(_primaryColor);
 const _scaffoldBackgroundColorLightMode = Colors.white;
 const _scaffoldBackgroundColorDarkMode = Colors.black87;
 
@@ -39,7 +40,7 @@ final lightThemeData = ThemeData(
   appBarTheme: const AppBarTheme(
     systemOverlayStyle: SystemUiOverlayStyle.dark,
     iconTheme: IconThemeData(
-      color: Colors.teal,
+      color: _primaryColor,
     ),
   ),
   navigationBarTheme: NavigationBarThemeData(
