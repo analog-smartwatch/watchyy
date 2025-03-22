@@ -2,34 +2,77 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart'
+    hide Provider, StreamProvider;
+import 'package:provider/provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:watchyy/ble/ble.dart';
 import 'package:watchyy/i18n/i18n.dart';
 import 'package:watchyy/locations/locations.dart';
 import 'package:watchyy/providers/providers.dart';
-import 'package:watchyy/singletons/singletons.dart';
+import 'package:watchyy/setup.dart';
 import 'package:watchyy/styles/styles.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   LocaleSettings.useDeviceLocale();
-  await AppSharedPreferences().init();
-
-  final currentLocale = AppSharedPreferences().locale;
-  if (currentLocale != null) {
-    await AppSharedPreferences().setLocale(currentLocale);
-    LocaleSettings.setLocale(currentLocale);
-  }
+  await setup();
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
 
+  final ble = FlutterReactiveBle();
+  final bleLogger = BleLogger(ble: ble);
+  final scanner = BleScanner(ble: ble, logMessage: bleLogger.addToLog);
+  final monitor = BleStatusMonitor(ble);
+  final connector = BleDeviceConnector(
+    ble: ble,
+    logMessage: bleLogger.addToLog,
+  );
+  final serviceDiscoverer = BleDeviceInteractor(
+    bleDiscoverServices: (deviceId) async {
+      await ble.discoverAllServices(deviceId);
+      return ble.getDiscoveredServices(deviceId);
+    },
+    logMessage: bleLogger.addToLog,
+    readRssi: ble.readRssi,
+  );
+
   final app = runApp(
     TranslationProvider(
-      child: const ProviderScope(
-        child: App(),
+      child: ProviderScope(
+        child: MultiProvider(
+          providers: [
+            Provider.value(value: scanner),
+            Provider.value(value: monitor),
+            Provider.value(value: connector),
+            Provider.value(value: serviceDiscoverer),
+            Provider.value(value: bleLogger),
+            StreamProvider<BleScannerState?>(
+              create: (_) => scanner.state,
+              initialData: const BleScannerState(
+                discoveredDevices: [],
+                scanIsInProgress: false,
+              ),
+            ),
+            StreamProvider<BleStatus?>(
+              create: (_) => monitor.state,
+              initialData: BleStatus.unknown,
+            ),
+            StreamProvider<ConnectionStateUpdate>(
+              create: (_) => connector.state,
+              initialData: const ConnectionStateUpdate(
+                deviceId: 'Unknown device',
+                connectionState: DeviceConnectionState.disconnected,
+                failure: null,
+              ),
+            ),
+          ],
+          child: const App(),
+        ),
       ),
     ),
   );
@@ -55,7 +98,7 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final product = ref.watch(productConnectionNotifier);
     final routerConfig =
-        product != null ? getRouter() : getNotConnectedRouter();
+        product != null ? getRouter() : getNotConnectedRouter(context);
 
     return MediaQuery.withClampedTextScaling(
       minScaleFactor: 0.7,

@@ -1,44 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:provider/provider.dart';
+import 'package:watchyy/ble/ble.dart';
 import 'package:watchyy/i18n/i18n.dart';
 import 'package:watchyy/providers/providers.dart';
 import 'package:watchyy/styles/styles.dart';
 import 'package:watchyy/widgets/widgets.dart';
 
-class ScanningScreen extends StatefulHookConsumerWidget {
+class ScanningScreen extends StatelessWidget {
   const ScanningScreen({super.key});
 
   @override
-  ScanningScreenState createState() => ScanningScreenState();
+  Widget build(BuildContext context) =>
+      Consumer3<BleScanner, BleScannerState?, BleLogger>(
+        builder: (_, bleScanner, bleScannerState, bleLogger, __) =>
+            _ScanningScreen(
+          scannerState: bleScannerState ??
+              const BleScannerState(
+                discoveredDevices: [],
+                scanIsInProgress: false,
+              ),
+          startScan: bleScanner.startScan,
+          stopScan: bleScanner.stopScan,
+          verboseLogging: bleLogger.verboseLogging,
+        ),
+      );
 }
 
-class ScanningScreenState extends ConsumerState<ScanningScreen> {
-  var _scanning = true;
-  var _products = <Product>[];
+class _ScanningScreen extends StatefulHookConsumerWidget {
+  const _ScanningScreen({
+    required this.scannerState,
+    required this.startScan,
+    required this.stopScan,
+    required this.verboseLogging,
+  });
 
+  final BleScannerState scannerState;
+  final void Function(List<Uuid>) startScan;
+  final VoidCallback stopScan;
+  final bool verboseLogging;
+
+  @override
+  _ScanningScreenState createState() => _ScanningScreenState();
+}
+
+class _ScanningScreenState extends ConsumerState<_ScanningScreen> {
   @override
   void initState() {
     super.initState();
     _init();
   }
 
-  Future<void> _init() async {
-    //TODO: delete this
-    setState(() {
-      _scanning = true;
-    });
+  @override
+  void dispose() {
+    widget.stopScan();
+    super.dispose();
+  }
 
-    Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        _products = [Product(bluetoothId: 'bluetoothId', name: 'Watchy')];
-      });
-    });
-    Future.delayed(const Duration(seconds: 2), () {
-      setState(() {
-        _scanning = false;
-      });
-    });
+  Future<void> _init() async {
+    _startScanning();
+  }
+
+  void _startScanning() {
+    widget.startScan([]);
   }
 
   void _connect(Product product) {
@@ -69,7 +94,7 @@ class ScanningScreenState extends ConsumerState<ScanningScreen> {
         child: WAButton(
           text: context.t.screens.scanning.stop_scan,
           type: WAButtonType.secondary,
-          onPressed: context.pop,
+          onPressed: () => widget.stopScan(),
         ),
       );
 
@@ -92,7 +117,7 @@ class ScanningScreenState extends ConsumerState<ScanningScreen> {
       padding: padding + WASpacings.lg.horizontal + WASpacings.md.top,
       child: Column(
         children: [
-          if (_scanning) ...[
+          if (widget.scannerState.scanIsInProgress) ...[
             WASpacings.xxl.verticalSpace,
             const Center(child: WASpinner()),
             WASpacings.xxl.verticalSpace,
@@ -119,6 +144,7 @@ class ScanningScreenState extends ConsumerState<ScanningScreen> {
   Widget _buildProductsFound({
     required BuildContext context,
     required EdgeInsetsDirectional padding,
+    required List<DiscoveredDevice> products,
   }) {
     final translations = context.t.screens.scanning;
 
@@ -127,7 +153,7 @@ class ScanningScreenState extends ConsumerState<ScanningScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (_scanning) ...[
+          if (widget.scannerState.scanIsInProgress) ...[
             WASpacings.xxl.verticalSpace,
             const Center(child: WASpinner()),
             WASpacings.xxl.verticalSpace,
@@ -142,10 +168,14 @@ class ScanningScreenState extends ConsumerState<ScanningScreen> {
             ),
           ],
           WASpacings.xl.verticalSpace,
-          for (final product in _products)
-            ProductListItem(
-              name: product.name,
-              onPressed: () => _connect(product),
+          for (final product in products)
+            Padding(
+              padding: WASpacings.sm.bottom,
+              child: ProductListItem(
+                name: product.name,
+                onPressed: () {},
+                // onPressed: () => _connect(product),
+              ),
             ),
         ],
       ),
@@ -155,26 +185,46 @@ class ScanningScreenState extends ConsumerState<ScanningScreen> {
   @override
   Widget build(BuildContext context) {
     final translations = context.t.screens.scanning;
+    final scanIsInProgress = widget.scannerState.scanIsInProgress;
 
     return WAScaffold(
       title: translations.title,
       bodyBuilder: (context, padding) {
-        if (_scanning) {
-          if (_products.isEmpty) {
-            return _buildNothingFound(context: context, padding: padding);
+        final discoveredDevices = widget.scannerState.discoveredDevices;
+        final products =
+            discoveredDevices.where((item) => item.name.isNotEmpty).toList();
+
+        if (scanIsInProgress) {
+          if (products.isEmpty) {
+            return _buildNothingFound(
+              context: context,
+              padding: padding,
+            );
           } else {
-            return _buildProductsFound(context: context, padding: padding);
+            return _buildProductsFound(
+              context: context,
+              padding: padding,
+              products: products,
+            );
           }
         } else {
-          if (_products.isEmpty) {
-            return _buildNothingFound(context: context, padding: padding);
+          if (products.isEmpty) {
+            return _buildNothingFound(
+              context: context,
+              padding: padding,
+            );
           } else {
-            return _buildProductsFound(context: context, padding: padding);
+            return _buildProductsFound(
+              context: context,
+              padding: padding,
+              products: products,
+            );
           }
         }
       },
-      stickyWidget:
-          _scanning ? _buildTryAgainButton(context) : _buildNewScan(context),
+      stickyWidget: scanIsInProgress
+          ? _buildTryAgainButton(context)
+          : _buildNewScan(context),
     );
   }
 }

@@ -1,20 +1,32 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:watchyy/locations/locations_helpers.dart';
 import 'package:watchyy/navigation/navigation.dart';
 import 'package:watchyy/screens/screens.dart';
 
-GoRouter getNotConnectedRouter() {
+GoRouter getNotConnectedRouter(BuildContext context) {
   return GoRouter(
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const MyWatchesScreen(),
+        builder: (_, state) => MyWatchesScreen(key: state.pageKey),
         routes: [
           GoRoute(
             path: scanningPath,
-            builder: (_, state) => ScanningScreen(key: state.pageKey),
+            builder: (_, state) {
+              return Consumer<BleStatus?>(
+                builder: (_, status, __) {
+                  if (status == BleStatus.ready) {
+                    return ScanningScreen(key: state.pageKey);
+                  } else {
+                    return BleStatusScreen(status: status ?? BleStatus.unknown);
+                  }
+                },
+              );
+            },
           ),
         ],
       ),
