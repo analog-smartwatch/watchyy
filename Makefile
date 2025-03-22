@@ -16,3 +16,6 @@ build-ios:
 
 build-android:
 	flutter build appbundle
+
+build-apk:
+	flutter build apk
