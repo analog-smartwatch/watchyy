@@ -18,7 +18,6 @@ class BleDeviceConnector extends ReactiveState<ConnectionStateUpdate> {
 
   final _deviceConnectionController = StreamController<ConnectionStateUpdate>();
 
-  // ignore: cancel_subscriptions
   late StreamSubscription<ConnectionStateUpdate> _connection;
 
   Future<void> connect(String deviceId) async {

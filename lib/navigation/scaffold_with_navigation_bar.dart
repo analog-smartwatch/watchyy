@@ -1,4 +1,3 @@
-// ignore_for_file: use_design_system_item_OAScaffold
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:watchyy/i18n/i18n.dart';
@@ -32,8 +31,8 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
         isAppInDarkMode(context) ? grey.shade900 : grey.shade100;
     if (isIos) {
       backgroundColor = isAppInDarkMode(context)
-          ? grey.shade900.withOpacity(0.7)
-          : grey.shade100.withOpacity(0.8);
+          ? grey.shade900.withValues(alpha: 0.7)
+          : grey.shade100.withValues(alpha: 0.8);
     }
 
     if (isIos) {

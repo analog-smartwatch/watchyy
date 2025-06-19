@@ -7,9 +7,9 @@ const scanningPath = '/scanning';
 const homePath = '/home';
 const settingsPath = '/settings';
 
-final GlobalKey<NavigatorState> shellNavigatorHomeKey =
+final shellNavigatorHomeKey =
     GlobalKey<NavigatorState>(debugLabel: 'shellHome');
-final GlobalKey<NavigatorState> shellNavigatorSettingsKey =
+final shellNavigatorSettingsKey =
     GlobalKey<NavigatorState>(debugLabel: 'shellSettings');
 
 int? getCurrentTabIndex(PrimaryTabScreen primaryTabScreen) {

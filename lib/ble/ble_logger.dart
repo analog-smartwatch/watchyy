@@ -8,7 +8,7 @@ class BleLogger {
 
   final FlutterReactiveBle _ble;
   final List<String> _logMessages = [];
-  final DateFormat formatter = DateFormat('HH:mm:ss.SSS');
+  final formatter = DateFormat('HH:mm:ss.SSS');
 
   List<String> get messages => _logMessages;
 

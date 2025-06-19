@@ -3,10 +3,21 @@ import 'package:flutter/services.dart';
 import 'package:watchyy/styles/fonts.dart';
 import 'package:watchyy/styles/themes_mobile_utils.dart';
 
+extension ColorUtils on Color {
+  int toInt() {
+    final alpha = (a * 255).toInt();
+    final red = (r * 255).toInt();
+    final green = (g * 255).toInt();
+    final blue = (b * 255).toInt();
+    // Combine the components into a single int using bit shifting
+    return (alpha << 24) | (red << 16) | (green << 8) | blue;
+  }
+}
+
 MaterialColor _getMaterialColor(Color color) {
-  final red = color.red;
-  final green = color.green;
-  final blue = color.blue;
+  final red = (color.r * 255).toInt();
+  final green = (color.g * 255).toInt();
+  final blue = (color.b * 255).toInt();
 
   final shades = {
     50: Color.fromRGBO(red, green, blue, .1),
@@ -21,7 +32,7 @@ MaterialColor _getMaterialColor(Color color) {
     900: Color.fromRGBO(red, green, blue, 1),
   };
 
-  return MaterialColor(color.value, shades);
+  return MaterialColor(color.toInt(), shades);
 }
 
 const _primaryColor = Color(0xFF2F80ED); //#2F80ED
@@ -30,7 +41,9 @@ const _scaffoldBackgroundColorLightMode = Colors.white;
 const _scaffoldBackgroundColorDarkMode = Colors.black87;
 
 final lightThemeData = ThemeData(
-  dialogBackgroundColor: _scaffoldBackgroundColorLightMode,
+  dialogTheme: const DialogThemeData(
+    backgroundColor: _scaffoldBackgroundColorLightMode,
+  ),
   splashColor: Colors.transparent,
   primaryColor: Colors.teal,
   secondaryHeaderColor: Colors.black,
@@ -60,7 +73,9 @@ final lightThemeData = ThemeData(
 );
 
 final darkThemeData = ThemeData(
-  dialogBackgroundColor: _scaffoldBackgroundColorDarkMode,
+  dialogTheme: const DialogThemeData(
+    backgroundColor: _scaffoldBackgroundColorDarkMode,
+  ),
   splashColor: Colors.transparent,
   primaryColor: Colors.teal,
   secondaryHeaderColor: Colors.white,

@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_function_declarations_over_variables, use_design_system_item_WAScaffold
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:watchyy/styles/styles.dart';
@@ -68,8 +67,8 @@ class WAScaffold extends StatelessWidget {
     );
 
     final backgroundColor = isDarkMode
-        ? Colors.black.withOpacity(0.7)
-        : Colors.white.withOpacity(0.8);
+        ? Colors.black.withValues(alpha: 0.7)
+        : Colors.white.withValues(alpha: 0.8);
 
     final trailingChildren = <Widget>[];
     final Widget trailing = Row(

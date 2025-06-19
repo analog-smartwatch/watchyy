@@ -1,4 +1,3 @@
-// ignore_for_file: use_design_system_item_ElevatedButton
 import 'package:flutter/material.dart';
 import 'package:watchyy/styles/styles.dart';
 

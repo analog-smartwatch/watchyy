@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:watchyy/ble/ble.dart';
 import 'package:watchyy/i18n/i18n.dart';
-import 'package:watchyy/providers/providers.dart';
 import 'package:watchyy/styles/styles.dart';
 import 'package:watchyy/widgets/widgets.dart';
 
@@ -66,9 +65,9 @@ class _ScanningScreenState extends ConsumerState<_ScanningScreen> {
     widget.startScan([]);
   }
 
-  void _connect(Product product) {
-    ref.read(productConnectionNotifier.notifier).connect(product);
-  }
+  // void _connect(Product product) {
+  //   ref.read(productConnectionNotifier.notifier).connect(product);
+  // }
 
   Widget _buildHeader({
     required BuildContext context,
